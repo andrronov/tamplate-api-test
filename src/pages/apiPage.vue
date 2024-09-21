@@ -4,8 +4,8 @@ import pageLoader from "../components/UI/pageLoader.vue";
 import pageError from '../components/UI/pageError.vue'
 import pageButton from '../components/UI/pageButton.vue'
 import { onMounted, reactive, ref, watch } from "vue";
+import { trStyle, tdStyle } from '../assets/styleVariables.js'
 
-const trStyle = "px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase"
 const pageOptions = reactive({page: 1, pageCount: 6})
 const users = ref([]);
 const isLoading = ref(true);
@@ -37,47 +37,45 @@ watch(pageOptions, () => {
   <pageError v-if="errorLog" :error="errorLog" />
   <pageLoader v-if="isLoading" />
 
-  <div class="h-screen flex flex-col justify-center items-center">
-    <table v-if="users" class="min-w-full divide-y divide-gray-200 mt-8">
+  <div class="h-screen w-full overflow-x-auto flex flex-col justify-center items-center">
+    <table v-if="users" class="w-full sm:w-4/5 divide-y divide-gray-200 mt-8">
       <thead class="bg-dev-100">
         <tr>
           <th scope="col" :class="trStyle">ID</th>
           <th scope="col" :class="trStyle">Имя</th>
           <th scope="col" :class="trStyle">Фамилия</th>
           <th scope="col" :class="trStyle">Email</th>
-          <th scope="col" :class="trStyle">Фото</th>
+          <th scope="col" :class="trStyle" class="hidden xs:block">Фото</th>
         </tr>
       </thead>
       <tbody class="bg-dev-500 text-dev-100 divide-y divide-gray-200">
         <tr v-for="user in users" :key="user.id" class="hover:bg-dev-100 hover:text-gray-900">
-          <td class="px-6 py-4 whitespace-nowrap">
+          <td :class="tdStyle">
             <div class="text-sm font-medium">
               {{ user.id }}
             </div>
           </td>
-          <td class="px-6 py-4 whitespace-nowrap">
+          <td :class="tdStyle">
             <div class="text-sm font-medium">
               {{ user.first_name }}
             </div>
           </td>
-          <td class="px-6 py-4 whitespace-nowrap">
+          <td :class="tdStyle">
             <div class="text-sm font-medium">
               {{ user.last_name }}
             </div>
           </td>
-          <td class="px-6 py-4 whitespace-nowrap">
+          <td :class="tdStyle">
             <div class="text-sm font-medium">
               {{ user.email }}
             </div>
           </td>
-          <td class="px-6 py-4 whitespace-nowrap">
-            <div class="text-sm font-medium">
-              <img :src="user.avatar" alt="" class="w-10 h-10 rounded-full">
-            </div>
+          <td :class="tdStyle" class="hidden xs:block">
+            <img :src="user.avatar" alt="" class="w-10 h-10 rounded-full">
           </td>
         </tr>
         <tr v-if="users.length === 0 && !isLoading" class="hover:bg-gray-50">
-          <td class="px-6 py-4 whitespace-nowrap" colspan="4">
+          <td :class="tdStyle" colspan="4">
             <div class="text-sm font-medium">
               No users
             </div>
@@ -86,7 +84,7 @@ watch(pageOptions, () => {
       </tbody>
     </table>
 
-    <div class="flex flex-row items-center gap-2">
+    <div class="flex flex-row items-center gap-2 mt-2">
       <button @click="pageOptions.page--" :disabled="pageOptions.page <= 1" class="px-3 cursor-pointer py-2 text-center rounded-xl border border-white hover:bg-dev-500 hover:text-white transition-all duration-300 ease-in-out">
         -
       </button>
