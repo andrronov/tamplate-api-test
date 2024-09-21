@@ -27,6 +27,7 @@
             <div class="flex flex-col items-center gap-4">
                 <h3 class="text-dev-100 text-xl font-bold">Method: {{ exampleButtons[selectedButtonId].type }}</h3>
                 <pre><code>{{ exampleButtons[selectedButtonId].request }}</code></pre>
+                <h3 class="text-dev-100 text-xl font-bold">Ответ:</h3>
                 <pre class="w-72 xs:w-auto overflow-x-scroll"><code>{{ exampleButtons[selectedButtonId].answer }}</code></pre>
             </div>
          </pageElement>
