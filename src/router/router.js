@@ -5,6 +5,11 @@ const routes = [
       path: '/',
       name: 'landing',
       component: () => import('../pages/landing.vue')
+   },
+   {
+      path: '/api',
+      name: 'api',
+      component: () => import('../pages/apiPage.vue')
    }
 ]
 

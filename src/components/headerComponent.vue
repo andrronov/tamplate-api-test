@@ -10,7 +10,7 @@
         <router-link :to="'/'" :class="$route.path === '/' ? 'underline font-semibold' : ''">Главная</router-link>
         <router-link :to="'/api'" :class="$route.path === '/api' ? 'underline font-semibold' : ''">API</router-link>
      </ul>
-     <pageButton @click="$router.push('/api')">Попробовать</pageButton>
+     <pageButton :link="'/api'" :class="$route.path === '/api' ? 'opacity-0 cursor-auto' : ''" :disabled="$route.path === '/api'">Попробовать</pageButton>
    </nav>
  </header>
 </template>
