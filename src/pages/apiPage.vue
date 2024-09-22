@@ -2,9 +2,8 @@
 import pageWrapper from "../components/UI/pageWrapper.vue";
 import pageLoader from "../components/UI/pageLoader.vue";
 import pageError from '../components/UI/pageError.vue'
-import pageButton from '../components/UI/pageButton.vue'
 import { onMounted, reactive, ref, watch } from "vue";
-import { trStyle, tdStyle } from '../assets/styleVariables.js'
+import { trStyle, tdStyle } from '../composables/styleVariables.js'
 
 const pageOptions = reactive({page: 1, pageCount: 6})
 const users = ref([]);
